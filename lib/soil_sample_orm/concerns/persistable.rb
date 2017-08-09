@@ -11,6 +11,10 @@ module Persistable
     def attributes
       self::ATTRIBUTES
     end
+
+    def table_name
+      "#{self.to_s.downcase}s"
+    end
   end
   # Instance methods for ORM persistence
   module InstanceMethods
