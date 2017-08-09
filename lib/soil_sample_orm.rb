@@ -1,5 +1,6 @@
-require 'soil_sample_orm/version'
+require 'awesome_print'
+require 'pry'
+require 'require_all'
+require 'sqlite3'
 
-module SoilSampleOrm
-  # Your code goes here...
-end
+require_all 'lib/soil_sample_orm'
