@@ -26,7 +26,7 @@ describe Sample do
     }
   }
 
-  let(:new_sample) { Sample.new }
+  let(:new_sample) { Sample.new(attributes) }
 
   describe '.attributes' do
     it 'returns hash of class attributes' do
@@ -38,6 +38,16 @@ describe Sample do
           :location => "TEXT"
         }
       )
+    end
+  end
+
+  describe 'initialize' do
+    it 'creates an new instance of a sample' do
+      expect(Sample.new).to be_a Sample
+    end
+
+    it 'creates a new sample with attributes' do
+      expect(new_sample.name).to eq('test_sample')
     end
   end
 
