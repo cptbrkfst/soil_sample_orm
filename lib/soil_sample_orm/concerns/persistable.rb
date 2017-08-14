@@ -31,6 +31,10 @@ module Persistable
       (self.attributes.keys.size - 1).times.collect { '?' }.join(',')
     end
 
+    def sql_for_update
+      self.attributes.keys[1..-1].collect{ |attr_name| "#{attr_name} = ?" }.join(',')
+    end
+
     def table_name
       "#{self.to_s.downcase}s"
     end
@@ -62,6 +66,12 @@ module Persistable
       end
     end
 
+    def attribute_values
+      self.class.attributes.keys[1..-1].collect do |attr_name|
+        self.send(attr_name)
+      end
+    end
+
     def insert
       sql = <<-SQL
         INSERT INTO #{self.class.table_name} (#{self.class.attribute_names_for_insert})
@@ -71,18 +81,21 @@ module Persistable
       self.id = DB[:conn].execute('SELECT last_insert_rowid();')[0][0]
     end
 
-    def attribute_values
-      self.class.attributes.keys[1..-1].collect do |attr_name|
-        self.send(attr_name)
-      end
-    end
-
     def destroy
       sql = <<-SQL
         DELETE FROM #{self.class.table_name} WHERE id = ?
       SQL
 
       DB[:conn].execute(sql, self.id)
+    end
+
+    def update
+      sql = <<-SQL
+        UPDATE #{self.class.table_name}
+        SET #{self.class.sql_for_update} WHERE id = ?
+      SQL
+
+      DB[:conn].execute(sql, *attribute_values, self.id)
     end
   end
 end
