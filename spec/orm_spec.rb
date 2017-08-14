@@ -66,4 +66,20 @@ describe Sample do
       expect(DB[:conn].execute('SELECT name FROM samples;')[0][0]).to eq('test_sample_new')
     end
   end
+
+  describe '.save' do
+    it 'inserts an instance if not persisted' do
+      new_sample.save
+      expect(new_sample.id).to eq(1)
+    end
+
+    it 'updates an instance if persisted' do
+      new_sample.save
+      new_sample.name = 'test_sample_new'
+      new_sample.save
+
+      expect(new_sample.name).to eq('test_sample_new')
+      expect(new_sample.id).to eq(1)
+    end
+  end
 end
