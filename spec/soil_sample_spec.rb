@@ -63,10 +63,4 @@ describe Sample do
       expect(new_description).to eq('new_test_sample_description')
     end
   end
-
-  describe '.table_name' do
-    it 'creates a downcased, plural table name based on Class name' do
-      expect(Sample.table_name).to eq('samples')
-    end
-  end
 end
