@@ -18,7 +18,6 @@ describe Sample do
 
   let(:new_sample) { Sample.new(attributes) }
 
-
   describe '.create_table' do
     it 'creates a table based on class name' do
       expect{ DB[:conn].execute('SELECT name FROM samples') }.to_not raise_exception
@@ -51,10 +50,20 @@ describe Sample do
   end
 
   describe '.destroy' do
-    it 'destroys an instance of an object from its corresponding database' do
+    it 'destroys an instance of an object from its corresponding table' do
       new_sample.insert
       new_sample.destroy
       expect(DB[:conn].execute('SELECT name FROM samples')).to eq([])
+    end
+  end
+
+  describe '.update' do
+    it 'updates an instance of an object from its corresponding table' do
+      new_sample.insert
+      new_sample.name = 'test_sample_new'
+      new_sample.update
+
+      expect(DB[:conn].execute('SELECT name FROM samples;')[0][0]).to eq('test_sample_new')
     end
   end
 end
