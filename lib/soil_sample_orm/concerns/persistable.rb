@@ -72,6 +72,10 @@ module Persistable
       end
     end
 
+    def persisted?
+      !!self.id
+    end
+
     def insert
       sql = <<-SQL
         INSERT INTO #{self.class.table_name} (#{self.class.attribute_names_for_insert})
@@ -96,6 +100,10 @@ module Persistable
       SQL
 
       DB[:conn].execute(sql, *attribute_values, self.id)
+    end
+
+    def save
+      persisted? ? update : insert
     end
   end
 end
