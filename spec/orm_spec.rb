@@ -3,17 +3,7 @@ require_relative 'spec_helper'
 describe Sample do
   before :each do
     DB[:conn].execute('DROP TABLE IF EXISTS samples')
-
-    sql = <<-SQL
-      CREATE TABLE IF NOT EXISTS samples (
-        id INTEGER PRIMARY KEY,
-        name TEXT,
-        description TEXT,
-        location TEXT
-      )
-    SQL
-
-    DB[:conn].execute(sql)
+    Sample.create_table
     DB[:conn].results_as_hash = true
   end
 
@@ -27,6 +17,13 @@ describe Sample do
   }
 
   let(:new_sample) { Sample.new(attributes) }
+
+
+  describe '.create_table' do
+    it 'creates a table based on class name' do
+      expect{ DB[:conn].execute('SELECT name FROM samples') }.to_not raise_exception
+    end
+  end
 
   describe '.column_names' do
     it 'returns an array of SQL column names' do
@@ -46,7 +43,18 @@ describe Sample do
     end
   end
 
-  describe '.create_table' do
-    it ''
+  describe '.insert' do
+    it 'inserts an instance of an object into its corresponding table' do
+      new_sample.insert
+      expect{ DB[:conn].execute('SELECT name FROM samples WHERE id = 1') }.to_not raise_exception
+    end
+  end
+
+  describe '.destroy' do
+    it 'destroys an instance of an object from its corresponding database' do
+      new_sample.insert
+      new_sample.destroy
+      expect(DB[:conn].execute('SELECT name FROM samples')).to eq([])
+    end
   end
 end
