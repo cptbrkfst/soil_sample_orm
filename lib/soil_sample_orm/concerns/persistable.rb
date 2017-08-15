@@ -53,6 +53,16 @@ module Persistable
       SQL
       DB[:conn].execute(sql)
     end
+
+    def reify_from_row#(row)
+      DB[:conn].results_as_hash = false
+      options = {}
+      row = DB[:conn].execute('SELECT * FROM samples').flatten
+      Sample.column_names.each.with_index do |k, v|
+        options[:"#{k}"] = row[v]
+      end
+      options
+    end
   end
   # Instance methods for ORM persistence
   module InstanceMethods
