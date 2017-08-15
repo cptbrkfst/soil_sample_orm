@@ -35,3 +35,7 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/cptbrk
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+
+## Development Process
+
+![More or less...](https://github.com/cptbrkfst/soil_sample_orm/tree/master/pictures/automation_2x.png "Development Process")
