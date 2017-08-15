@@ -54,14 +54,21 @@ module Persistable
       DB[:conn].execute(sql)
     end
 
-    def reify_from_row#(row)
+    def find(id)
       DB[:conn].results_as_hash = false
+      sql = <<-SQL
+        SELECT * FROM #{self.table_name} WHERE id = ?
+      SQL
+      row = DB[:conn].execute(sql, id).flatten
+      row.first ? self.reify_from_row(row) : nil
+    end
+
+    def reify_from_row(row)
       options = {}
-      row = DB[:conn].execute('SELECT * FROM samples').flatten
       Sample.column_names.each.with_index do |k, v|
         options[:"#{k}"] = row[v]
       end
-      options
+      Sample.new(options)
     end
   end
   # Instance methods for ORM persistence
