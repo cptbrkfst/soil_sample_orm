@@ -82,4 +82,15 @@ describe Sample do
       expect(new_sample.id).to eq(1)
     end
   end
+
+  describe '.find' do
+    it 'finds a database row by id and returns its corresponding instance' do
+      new_sample.save
+      expect(Sample.find(1).name).to eq('test_sample')
+    end
+
+    it 'returns nil when no item is found' do
+      expect(Sample.find(2)).to eq(nil)
+    end
+  end
 end
