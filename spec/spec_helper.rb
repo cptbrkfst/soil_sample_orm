@@ -1,3 +1,6 @@
+require 'coveralls'
+Coveralls.wear!
+
 require 'bundler/setup'
 require 'soil_sample_orm'
 require_relative '../config/environment'

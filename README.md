@@ -1,6 +1,11 @@
-# SoilSampleOrm
+# Soil Sample ORM
 
-A Dynamic ORM for Soil Sample DB
+[![Code Climate](https://img.shields.io/codeclimate/github/kabisaict/flow.svg)](https://codeclimate.com/github/cptbrkfst/soil_sample_orm)
+[![Coverage Status](https://coveralls.io/repos/github/cptbrkfst/soil_sample_orm/badge.svg?branch=master)](https://coveralls.io/github/cptbrkfst/soil_sample_orm?branch=master)
+
+
+
+Soil Sample ORM is a dynamic object-relational mapper for documenting soil samples.
 
 ## Installation
 
@@ -26,7 +31,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/soil_sample_orm.
+Bug reports and pull requests are welcome on GitHub at https://github.com/cptbrkfst/soil_sample_orm.
 
 ## License
 
