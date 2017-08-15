@@ -38,4 +38,4 @@ The gem is available as open source under the terms of the [MIT License](http://
 
 ## Development Process
 
-![More or less...](https://github.com/cptbrkfst/soil_sample_orm/tree/master/pictures/automation_2x.png "Development Process")
+![More or less...](https://github.com/cptbrkfst/soil_sample_orm/blob/master/pictures/automation_2x.png "Development Process")
