@@ -2,8 +2,7 @@
 
 [![Code Climate](https://img.shields.io/codeclimate/github/kabisaict/flow.svg)](https://codeclimate.com/github/cptbrkfst/soil_sample_orm)
 [![Coverage Status](https://coveralls.io/repos/github/cptbrkfst/soil_sample_orm/badge.svg?branch=master)](https://coveralls.io/github/cptbrkfst/soil_sample_orm?branch=master)
-
-
+[![Gem Version](https://badge.fury.io/rb/soil_sample_orm.svg)](https://badge.fury.io/rb/soil_sample_orm)
 
 Soil Sample ORM is a dynamic object-relational mapper for documenting soil samples.
 
